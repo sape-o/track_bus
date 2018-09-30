@@ -5,6 +5,7 @@ var Ons = require('react-onsenui');
 //----------------------------------------------------------------------------------------//
 // git master
 //test
+// add by oreo for team
 class App extends React.Component {
   constructor() {
     super();
