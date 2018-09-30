@@ -106,7 +106,7 @@ class Promotion extends React.Component {
   renderToolbar() {
     return (
       <Ons.Toolbar>
-        <div className='center'>Splitter+Navigator</div>
+        <div className='center'>Promotion</div>
         <div className='right'>
           <Ons.ToolbarButton onClick={this.showMenu.bind(this)}>
             <Ons.Icon icon='ion-navicon, material:md-menu' />
@@ -141,6 +141,7 @@ class TimeLine extends React.Component {
     return (
       <Ons.Toolbar>
         <div className='left'><Ons.BackButton>Back</Ons.BackButton></div>
+        <div className='center'>TimeLine</div>
         <div className='right'>
           <Ons.ToolbarButton onClick={this.showMenu.bind(this)}>
             <Ons.Icon icon='ion-navicon, material:md-menu' />
@@ -193,7 +194,7 @@ class Chauffeur extends React.Component {
   renderToolbar() {
     return (
       <Ons.Toolbar>
-        <div className='center'>Splitter+Navigator</div>
+        <div className='center'>Chauffeur</div>
         <div className='right'>
           <Ons.ToolbarButton onClick={this.showMenu.bind(this)}>
             <Ons.Icon icon='ion-navicon, material:md-menu' />
