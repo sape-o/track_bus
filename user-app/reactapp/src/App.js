@@ -4,23 +4,29 @@ var ons = require('onsenui');
 var Ons = require('react-onsenui');
 //----------------------------------------------------------------------------------------//
 // git master
-//test
-// add by oreo for team
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      isOpen: false,
+      checked: false
+
     };
     this.loadPage = this.loadPage.bind(this);
+    this.switchchange = this.switchchange.bind(this);
+
   }
+
+
   hide() { this.setState({ isOpen: false });}
   show() { this.setState({ isOpen: true });}
+  switchchange(e) { this.setState({checked: e.target.checked});}
+
   loadPage(page) {
     this.hide();
     const currentPage = this.navigator.pages.slice(-1)[0] // --- or [this.navigator.pages.length - 1]
     if(currentPage.key != page.name){
-      this.navigator.resetPage({ component: page, props: { key: page.name } }, { animation: 'fade' });
+      this.navigator.resetPage({ component: page, props: { key: page.name } }, { animation: 'slide' });
     }
   }
   renderPage(route, navigator) {
@@ -33,15 +39,26 @@ class App extends React.Component {
   render() {
     return (
       <Ons.Splitter>
-        <Ons.SplitterSide side='right' width={220} collapse={true} swipeable={true} isOpen={this.state.isOpen} onClose={this.hide.bind(this)} onOpen={this.show.bind(this)}>
+        <Ons.SplitterSide side='right' width={260} collapse={true} swipeable={true} isOpen={this.state.isOpen} onClose={this.hide.bind(this)} onOpen={this.show.bind(this)}>
           <Ons.Page>
             <Ons.List>
-              <Ons.ListHeader>Cute cats</Ons.ListHeader>
-              <Ons.ListItem key={Promotion.name} onClick={this.loadPage.bind(this, Promotion)} tappable>Promotion</Ons.ListItem>
-              <Ons.ListItem key={TimeLine.name} onClick={this.loadPage.bind(this, TimeLine)} tappable>TimeLine</Ons.ListItem>
-              <Ons.ListItem key={Chauffeur.name} onClick={this.loadPage.bind(this, Chauffeur)} tappable>Chauffeur</Ons.ListItem>
-              <Ons.ListItem key={ReportApp.name} onClick={this.loadPage.bind(this, ReportApp)} tappable>ReportApp</Ons.ListItem>
-              <Ons.ListItem key={ReportBus.name} onClick={this.loadPage.bind(this, ReportBus)} tappable>ReportBus</Ons.ListItem>
+              <Ons.ListHeader>Account</Ons.ListHeader>
+
+              <Ons.ListItem>name : Sape-o</Ons.ListItem>
+              <Ons.ListItem>sername : Sape-o</Ons.ListItem>
+              <Ons.ListItem>ID : B5899999</Ons.ListItem>
+              <Ons.ListItem>Point : 9999</Ons.ListItem>
+              <Ons.ListHeader></Ons.ListHeader>
+              <Ons.ListItem>Language : {this.state.checked ? 'Thai' : 'English'}
+                <Ons.Switch checked={this.state.checked} onChange={this.switchchange} />
+              </Ons.ListItem>
+              <Ons.ListHeader></Ons.ListHeader>
+              <Ons.ListItem key={Home.name} onClick={this.loadPage.bind(this, Home)} tappable>Track Bus</Ons.ListItem>
+              <Ons.ListItem class="list-item--chevron" key={Promotion.name} onClick={this.loadPage.bind(this, Promotion)} tappable>Promotion</Ons.ListItem>
+              <Ons.ListItem class="list-item--chevron" key={TimeLine.name} onClick={this.loadPage.bind(this, TimeLine)} tappable>TimeLine</Ons.ListItem>
+              <Ons.ListItem class="list-item--chevron" key={Chauffeur.name} onClick={this.loadPage.bind(this, Chauffeur)} tappable>Chauffeur</Ons.ListItem>
+              <Ons.ListItem class="list-item--chevron" key={ReportApp.name} onClick={this.loadPage.bind(this, ReportApp)} tappable>ReportApp</Ons.ListItem>
+              <Ons.ListItem class="list-item--chevron" key={ReportBus.name} onClick={this.loadPage.bind(this, ReportBus)} tappable>ReportBus</Ons.ListItem>
               <Ons.ListItem key={Settings.name} onClick={this.loadPage.bind(this, Settings)} tappable>Settings</Ons.ListItem>
               <Ons.ListItem key={Logout.name} onClick={this.loadPage.bind(this, Logout)} tappable>Logout</Ons.ListItem>
             </Ons.List>
@@ -85,16 +102,7 @@ class Home extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <h2>Home</h2>
-        <div style={{ textAlign: 'center' }}>
-          <br />
-          <Ons.Button onClick={this.pushPage.bind(this)}>
-            Push Page
-          </Ons.Button>
-        </div>
-        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
-          Swipe left to open the menu!
-        </p>
+
       </Ons.Page>
     );
   }
@@ -106,6 +114,8 @@ class Home extends React.Component {
  */
 
 class Promotion extends React.Component {
+
+
   renderToolbar() {
     return (
       <Ons.Toolbar>
@@ -126,10 +136,7 @@ class Promotion extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <h2>Settings</h2>
-        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
-          Swipe left to open the menu!
-        </p>
+
       </Ons.Page>
     );
   }
@@ -161,29 +168,8 @@ class TimeLine extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <Ons.Card>
-          <img src={"https://monaca.io/img/logos/download_image_onsenui_01.png"} alt="Onsen UI" style={{ width: '100%' }} />
-          <div className="title">{this.props.cardTitle ? this.props.cardTitle : 'Custom Card'}</div>
-          <div className="content">
-            <div>
-              <Ons.Button>
-                <Ons.Icon icon="ion-thumbsup"></Ons.Icon>
-              </Ons.Button>
-              <Ons.Button>
-                <Ons.Icon icon="ion-share"></Ons.Icon>
-              </Ons.Button>
-            </div>
-            <Ons.List>
-              <Ons.ListHeader>Bindings</Ons.ListHeader>
-              <Ons.ListItem>Vue</Ons.ListItem>
-              <Ons.ListItem>Angular</Ons.ListItem>
-              <Ons.ListItem>React</Ons.ListItem>
-            </Ons.List>
-          </div>
-        </Ons.Card>
-        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
-          Swipe left to open the menu!
-        </p>
+
+
       </Ons.Page>
     );
   }
@@ -218,17 +204,7 @@ class Chauffeur extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <h2>Cards</h2>
 
-        <Ons.ListTitle>Card List</Ons.ListTitle>
-        <Ons.List>
-          <Ons.ListItem onClick={this.pushPage.bind(this)}>Card One</Ons.ListItem>
-          <Ons.ListItem onClick={this.pushPage.bind(this)}>Card Two</Ons.ListItem>
-          <Ons.ListItem onClick={this.pushPage.bind(this)}>Card Three</Ons.ListItem>
-        </Ons.List>
-        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
-          Swipe left to open the menu!
-        </p>
       </Ons.Page>
     );
   }
@@ -250,8 +226,7 @@ class ReportApp extends React.Component {
   renderToolbar() {
     return (
       <Ons.Toolbar>
-        <div className='left'><Ons.BackButton>Back</Ons.BackButton></div>
-        <div className="center">{this.state.title}</div>
+        <div className="center">ReportApp</div>
         <div className='right'>
           <Ons.ToolbarButton onClick={this.showMenu.bind(this)}>
             <Ons.Icon icon='ion-navicon, material:md-menu' />
@@ -276,21 +251,7 @@ class ReportApp extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <div style={{ textAlign: 'center' }}>
-          <h1>Custom Page</h1>
-          <p>
-            <Ons.Input modifier="underbar" placeholder="Title" float onChange={evt => this.setState({ nexTitle: evt.target.value })} ></Ons.Input>
-          </p>
-          <Ons.Button onClick={this.pushPage.bind(this)}>
-            Push Page
-          </Ons.Button>
-          <Ons.Button onClick={this.popPage.bind(this)}>
-            Pop Page
-          </Ons.Button>
-        </div>
-        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
-          Swipe left to open the menu!
-        </p>
+
       </Ons.Page>
     );
   }
@@ -304,7 +265,7 @@ class ReportBus extends React.Component {
   renderToolbar() {
     return (
       <Ons.Toolbar>
-        <div className='center'>SUT Track Bus</div>
+        <div className='center'>ReportBus</div>
         <div className='right'>
           <Ons.ToolbarButton onClick={this.showMenu.bind(this)}>
             <Ons.Icon icon='ion-navicon, material:md-menu' />
@@ -325,16 +286,7 @@ class ReportBus extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <h2>Home</h2>
-        <div style={{ textAlign: 'center' }}>
-          <br />
-          <Ons.Button onClick={this.pushPage.bind(this)}>
-            Push Page
-          </Ons.Button>
-        </div>
-        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
-          Swipe left to open the menu!
-        </p>
+
       </Ons.Page>
     );
   }
@@ -348,7 +300,7 @@ class Settings extends React.Component {
   renderToolbar() {
     return (
       <Ons.Toolbar>
-        <div className='center'>SUT Track Bus</div>
+        <div className='center'>Settings</div>
         <div className='right'>
           <Ons.ToolbarButton onClick={this.showMenu.bind(this)}>
             <Ons.Icon icon='ion-navicon, material:md-menu' />
@@ -369,16 +321,7 @@ class Settings extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <h2>Home</h2>
-        <div style={{ textAlign: 'center' }}>
-          <br />
-          <Ons.Button onClick={this.pushPage.bind(this)}>
-            Push Page
-          </Ons.Button>
-        </div>
-        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
-          Swipe left to open the menu!
-        </p>
+
       </Ons.Page>
     );
   }
@@ -413,16 +356,7 @@ class Logout extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <h2>Home</h2>
-        <div style={{ textAlign: 'center' }}>
-          <br />
-          <Ons.Button onClick={this.pushPage.bind(this)}>
-            Push Page
-          </Ons.Button>
-        </div>
-        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
-          Swipe left to open the menu!
-        </p>
+
       </Ons.Page>
     );
   }
