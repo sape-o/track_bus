@@ -8,11 +8,8 @@ os.system("mkdir a")# command line
     Check client can ping to server
     Show light { Green : mormal  , Yellow : waiting Connect to server ,RED : GPS fail }
     รอการเชื่อมต่อก่อน ถ้าเชื่อมต่อไม่ได้ อย่าพึ่งไป show สายสีแดง บนจอ
-'''
-
-'''
  Step 1
-    - request เพื่อ ขอว่า มี Bus scheduler ณ เวลานั้นมีอะไรบ้าง ส่งเป็น json
+    - request เพื่อ ขอว่า มี Bus scheduler ณ เวลานั้นมีอะไรบ้าง ส่งเป็น json  ส่ง username ไปด้วย
     - รับค่า จาก server เป็นไฟล์ json แล้วเอาไปใส่ในตัวแปร เพื่อแดง ที่จอ urlencode
         {
             ป้ายไฟ : สายสีแดง ชาย
@@ -20,16 +17,41 @@ os.system("mkdir a")# command line
             สายเส้นทางรอง : กี่อันก็ว่ากันไป
         }
 
-    - รับค่าจาก ปุ่มกดว่า พนักงาน กดอะไร แล้ว ทำการ request ไฟล์ packet
+    - รับค่าจาก ปุ่มกดว่า พนักงาน กดอะไร แล้ว ทำการ request ไฟล์ packet   Post and Respont
     - แตกไฟล์ packet ทั้งหมด เข้าไปยัง ระบบ (มี Foder สร้างรอไว้แล้ว)
         - ไฟล์ เสียง mp3 ขนาดน้อยที่สุดเท่าที่จะทำได้
         - json ที่บอกว่า มีสถานีอะไรบ้าง , ละติจุด ลองติจุด
 '''
 
+'''
+    จอแสดงผล " Check "
+    เช็ก GPS  ถ้าไม่มีค่าส่งมาให้ แสดงสีแสดงสีแดง  กำลังเช็ก ให้แสดงสีเหลือง  ใช้งานได้ให้แสดงสีเขียว
+    เช็ก net ถ้าต่อserver ไม่ได้ให้แสดงสีแดง  กำลังเช็ก ให้แสดงสีเหลือง  ใช้งานได้ให้แสดงสีเขียว
+    เช็ก RFID ถ้าใช้งานได้ ให้แสดงสีเขียว  ใช้งานไม่ได้แสดงสีแดง
+    ถ้า GPS && net ใช้งานไม่ได้คือ ปิดระบบเลย
+'''
 
+
+'''
+    Get Request ขอ run โดยส่ง username ไปที่ /busgetruntime
+    เมื่อได้ json ออกมาแล้ว แยกหมวดประเภทออกมา ใส่ตัวแปร ที่เป็น array
+    เอา ชื่อสาย เวลา แสดง บนจอ LED
+
+    รับค่าตอนที่ พนักงานกด ว่ากด เลือกอันไหน แล้ว
+    Post Request ไปที่ /bussingin ส่ง username,password,และ id run
+    รับค่า id logrun เพื่อเอาไว้ใช้ส่งไป database ตอน trackbus
+    รับค่า ลิ้งก์ไฟล์  ถ้ามีไฟล์อันนี้อยู่บนเครื่อง ไม่ต้อง ทำการโหลด แต่ถ้าไม่มี ทำการไปดึงไฟล์ tar.gz ออกมา
+
+'''
+
+'''
+    เริ่มต้น track โดยส่ง username latitude longitude เวลา id logrun ไปที่ /bustrack
+    ถ้ามีการ ติ๊กบัตร ให้ ส่งไปที่ /buspostpointstudent ส่ง idstudent idlog เวลา ,id station
+     respond กลับมา ถ้าบันทึกเสร็จ ให้ขึ้นสีน้ำเงิน ถ้าไม่มีข้อมูลนักศึกษาให้ขึ้นสีแดง
+
+'''
 
 # POST To Server
-
 params = urllib.parse.urlencode({'@user': 'bus1', '@pass': 'bus1', '@action': 'requestpacket'})#content
 headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
 conn = http.client.HTTPConnection("bus-sut.com")#web
