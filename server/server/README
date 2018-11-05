@@ -1,3 +1,0 @@
-server
-  - main_API_admin เอาไว้สำหรับ รับ request กับสิ่งที่ ui admin ส่งค่ามาหา server ซึ่งจะเป็นเว็บ server
-  - main_API_BUS เอาไว้รับ ค่า GPS และ RFID ที่ส่งมา รวมถึง วีดีโอ (ถ้าทำได้) แล้วมาจัดการต่อ
