@@ -25,14 +25,20 @@ export default class App extends Component {
             <div id="navbarBasicExample" class="navbar-menu">
               <div class="navbar-start">
                 <Link to="/" class="navbar-item">SUT Track BUS</Link>
-                <Link to="/home" class="navbar-item">Home</Link>
-                <Link to="/document" class="navbar-item">Documentation</Link>
+
               </div>
               <div class="navbar-end">
+                <Link to="/home" class="navbar-item">Home</Link>
+                <Link to="/document" class="navbar-item">Documentation</Link>
+                <Link to="/bus" class="navbar-item">BUS</Link>
+                <Link to="/bus" class="navbar-item">BUS</Link>
+                <Link to="/bus" class="navbar-item">BUS</Link>
+                <Link to="/bus" class="navbar-item">BUS</Link>
+                <Link to="/bus" class="navbar-item">BUS</Link>
                 <div class="navbar-item">
                   <div class="buttons">
-                 <Link to="/signin" class="button is-success">Sign Up</Link>
-                 <Link to="/signup" class="button is-success">Sign In</Link>
+                    <Link to="/signin" class="button is-success">Sign Up</Link>
+                    <Link to="/signup" class="button is-success">Sign In</Link>
                   </div>
                 </div>
               </div>
@@ -43,7 +49,7 @@ export default class App extends Component {
             <Route path="/home" component={Home} />
             <Route path="/document" component={Document} />
             <Route path="/signin" component={Signin} />
-
+            <Route path="/bus" component={Bus}/>
 
           </React.Fragment>
         </div>
