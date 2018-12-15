@@ -6,7 +6,18 @@
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
 }
-
+.flex-container {
+  width: 100%;
+  height: 250px;
+  background-color: rgba(0, 0, 150, .3);
+  text-align: center;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
