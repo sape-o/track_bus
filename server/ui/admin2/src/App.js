@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Route,Switch,Link} from 'react-router-dom';
-import {Document} from './document';
-import {Signin} from './signin/';
-import {Home} from './home/';
-import {Bus} from './bus/';
+import {Document} from './document/document';
+import {Signin} from './signin/signin';
+import {Home} from './home/home';
+import {Bus} from './bus/bus';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
