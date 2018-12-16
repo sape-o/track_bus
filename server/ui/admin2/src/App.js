@@ -1,49 +1,47 @@
 import React, { Component } from 'react';
-import {InputText} from 'primereact/inputtext';
-import {Password} from 'primereact/password';
-import {Button} from 'primereact/button';
-import {Card} from 'primereact/card';
+import {Route,Switch,Link} from 'react-router-dom';
 
+import {Signin} from './signin/signin';
+import {Home} from './home/home';
+import {Bus} from './bus/bus';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+
 import './App.css';
 
-class App extends Component {
-
-  constructor() {
-      super();
-      this.state={
-        username:null,
-        password:null,
 
 
-      }
-  }
+
+export default class App extends Component {
+
+
 
   render(){
     return(
-
-      <Card style={{width:'300px'}}  >
-        <span className="p-float-label">
-          <InputText id="in" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})} />
-          <label htmlFor="in">Username</label>
-        </span>
-        <br/>
-        <span className="p-float-label">
-          <Password id="in" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} />
-          <label htmlFor="in">Password</label>
-        </span>
-        <br/>
-        <div>
-          <Button label="Sing In" /> &nbsp;
-          <Button label="Sing Up" className="p-button-success"/>
+      <div>
+      <nav class="navbar is-primary" role="navigation" aria-label="main navigation" style={{width:'100%'}}>
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+              <Link to="/" class="navbar-item">SUT Track BUS</Link>
+            <a class="navbar-item">Home</a>
+            <a class="navbar-item">Documentation</a>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+             <Link to="/signin" class="button is-success">Sign Up</Link>
+             <Link to="/Signup" class="button is-success">Sign In</Link>
+              </div>
+            </div>
+          </div>
         </div>
-      </Card>
+      </nav>
 
-
-    );
+      <React.Fragment>
+        <Route path="/signin" component={Signin} />
+      </React.Fragment>
+    </div>
+  );
   }
 }
-
-export default App;
